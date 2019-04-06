@@ -10,31 +10,51 @@ using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserProfileController : ControllerBase
     {
         private UserManager<ApplicationUser> _userManager;
-        public UserProfileController(UserManager<ApplicationUser> userManager)
+        private AuthenticationContext _context;
+        public UserProfileController(UserManager<ApplicationUser> userManager, AuthenticationContext context)
         {
             _userManager = userManager;
+            _context = context;
         }
 
         [HttpGet]
         [Authorize]
         //GET : /api/UserProfile
-        public async Task<Object> GetUserProfile() {
+        public async Task<Object> UserProfile() {
             string userId = User.Claims.First(c => c.Type == "UserId").Value;
             var user = await _userManager.FindByIdAsync(userId);
 
             return new
             {
+                user.Id,
                 user.FirstName,
                 user.LastName,
                 user.Email,
                 user.UserName,
                 user.PhoneNumber
             };
-        }   
+        }
+
+        [HttpGet]
+        public IEnumerable<object> RegisteredUsers()
+        {
+            return _context.Users.Select(x => new
+            {
+                x.Id,
+                x.FirstName,
+                x.LastName,
+                x.UserName,
+                x.Email,
+                x.PhoneNumber,
+                Type = x.Type.ToString()
+            }).ToList();
+        }
+
+        
     }
 }

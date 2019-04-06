@@ -40,7 +40,8 @@ namespace WebAPI.Controllers
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                PhoneNumber = model.PhoneNumber
+                PhoneNumber = model.PhoneNumber,
+                Type = model.Type
             };
 
             try
@@ -65,16 +66,17 @@ namespace WebAPI.Controllers
             {
                 var tokenDescriptor = new SecurityTokenDescriptor {
                     Subject = new ClaimsIdentity(new Claim[] {
-                        new Claim("UserId", user.Id.ToString())
+                        new Claim("UserId", user.Id.ToString()),
+                        new Claim("UserType", user.Type.ToString()),
                     }),
-                    Expires = DateTime.UtcNow.AddDays(1),
+                    Expires = DateTime.UtcNow.AddMinutes(10),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                 var token = tokenHandler.WriteToken(securityToken);
 
-                return Ok(new { token });
+                return Ok(new { token, userType = user.Type.ToString() });
             }
             else
                 return BadRequest(new { message = "Username or Password is Incorrect" });

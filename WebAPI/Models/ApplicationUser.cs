@@ -11,5 +11,12 @@ namespace WebAPI.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public UserType Type { get; set; }
+    }
+
+    public enum UserType
+    {
+        Admin,
+        Borlaman
     }
 }
