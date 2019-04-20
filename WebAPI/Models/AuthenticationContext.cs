@@ -9,6 +9,9 @@ namespace WebAPI.Models
 {
     public class AuthenticationContext: IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Bin> Bins { get; set; }
+        public DbSet<Order> Orders { get; set; }
+
         public AuthenticationContext(DbContextOptions options): base(options)
         {
             

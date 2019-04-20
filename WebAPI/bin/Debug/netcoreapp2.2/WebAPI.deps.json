@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "6bcffadc88cd274d9a1b65132e3ce7423292eaf3"
+    "signature": "16ff12531691575e6ec14395398f12c9327b3147"
   },
   "compilationOptions": {
     "defines": [
@@ -28,13 +28,41 @@
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.0"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.0",
+          "Flurl.Http": "2.4.1"
         },
         "runtime": {
           "WebAPI.dll": {}
         },
         "compile": {
           "WebAPI.dll": {}
+        }
+      },
+      "Flurl/2.8.1": {
+        "runtime": {
+          "lib/netstandard2.0/Flurl.dll": {
+            "assemblyVersion": "2.8.1.0",
+            "fileVersion": "2.8.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Flurl.dll": {}
+        }
+      },
+      "Flurl.Http/2.4.1": {
+        "dependencies": {
+          "Flurl": "2.8.1",
+          "Newtonsoft.Json": "11.0.2",
+          "System.Text.Encoding.CodePages": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Flurl.Http.dll": {
+            "assemblyVersion": "2.4.1.0",
+            "fileVersion": "2.4.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Flurl.Http.dll": {}
         }
       },
       "Microsoft.AspNet.Cors/5.2.7": {
@@ -3396,6 +3424,9 @@
           "Microsoft.NETCore.Platforms": "2.2.0",
           "System.Runtime.CompilerServices.Unsafe": "4.5.1"
         },
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        },
         "compileOnly": true
       },
       "System.Text.Encoding.Extensions/4.3.0": {
@@ -3579,6 +3610,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Flurl/2.8.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RI3e1vOfhtZJNSsrA/5aEAenC60Dmf/8ODXdSOJ9kHwS+EjXGMjLt8AZKhCPqKSaykUIV/M3FLBsf9vQgLxTxw==",
+      "path": "flurl/2.8.1",
+      "hashPath": "flurl.2.8.1.nupkg.sha512"
+    },
+    "Flurl.Http/2.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Pt1ErAK5ABGSiWEBFhbV1anEu11ET5yzvD5LkaWZnr7ezVQbcf7lCN++3lGNszth4z6rPFvUx+potvVY6OZSjw==",
+      "path": "flurl.http/2.4.1",
+      "hashPath": "flurl.http.2.4.1.nupkg.sha512"
     },
     "Microsoft.AspNet.Cors/5.2.7": {
       "type": "package",

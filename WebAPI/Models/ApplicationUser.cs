@@ -11,6 +11,7 @@ namespace WebAPI.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public bool OnDuty { get; set; }
         public UserType Type { get; set; }
     }
 
@@ -18,5 +19,26 @@ namespace WebAPI.Models
     {
         Admin,
         Borlaman
+    }
+
+    public class Bin
+    {
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public float Lat { get; set; }
+        public float Lng { get; set; }
+        public int Distance { get; set; }
+        public string Location { get; set; }
+        public List<Order> Orders { get; set; }
+    }
+
+    public class Order
+    {
+        public long Id { get; set; }
+        public DateTime DateRequested { get; set; }
+        public DateTime? DateCompleted { get; set; }
+        public Bin Bin { get; set; }
+        public long BinId { get; set; }
+        public bool Completed { get; set; }
     }
 }
