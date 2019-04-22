@@ -51,10 +51,23 @@ namespace WebAPI.Controllers
                 x.UserName,
                 x.Email,
                 x.PhoneNumber,
+                x.OnDuty,
                 Type = x.Type.ToString()
             }).ToList();
         }
 
-        
+        [HttpGet]
+        public ActionResult SetDutyStatus(string id)
+        {
+            var user = _context.Users.Find(id);
+            if (user == null) throw new Exception("User not found");
+
+            user.OnDuty = !user.OnDuty;
+            _context.Users.Update(user);
+            _context.SaveChanges();
+
+            return Ok(1);
+        }
+
     }
 }

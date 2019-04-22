@@ -1,17 +1,16 @@
 ﻿
+using Flurl.Http;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Flurl;
-using Flurl.Http;
-using System.Diagnostics;
-using Microsoft.Extensions.DependencyInjection;
-using WebAPI.Models;
 using WebAPI.Integrations;
-using Microsoft.AspNetCore.Http;
+using WebAPI.Models;
 
 namespace WebAPI.Jobs
 {
@@ -31,10 +30,8 @@ namespace WebAPI.Jobs
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                using(var scope = _serviceScopeFactory.CreateScope())
+                using (var scope = _serviceScopeFactory.CreateScope())
                 {
-                    var ip = _accessor.HttpContext?.Connection?.RemoteIpAddress?.ToString();
-                    Debug.WriteLine("IP Address => " + ip);
 
                     var serviceProvider = scope.ServiceProvider;
                     var context = serviceProvider.GetService<AuthenticationContext>();
@@ -48,40 +45,40 @@ namespace WebAPI.Jobs
                     //Update bin status in your database
                     foreach (var bin in bins)
                     {
-                        var dbBin = context.Bins.FirstOrDefault(q=>q.Name == bin.Name);
+                        var dbBin = context.Bins.FirstOrDefault(q => q.Name == bin.Name);
                         if (dbBin == null) continue;
 
                         dbBin.Distance = bin.Distance;
                         context.Bins.Update(dbBin);
 
                         //Create order in your database if bin is full
-                        if(bin.Distance >= 75)
+                        if (bin.Distance >= 75)
                         {
-                            //Todo: Check if order already created to skip
+                            //Check if order already created to skip
                             var orderExist = context.Orders.FirstOrDefault(q => q.BinId == dbBin.Id && !q.Completed);
-                            if(orderExist == null)
+                            if (orderExist == null)
                             {
                                 var newOrder = new Order
                                 {
                                     BinId = dbBin.Id,
-                                    DateRequested = DateTime.UtcNow
+                                    DateRequested = DateTime.UtcNow                                    
                                 };
                                 context.Orders.Add(newOrder);
 
                                 //Send sms to borlamen on duty
                                 //Todo: Get current IP Address
-
-                                //var url = $"{ip}/4200/home/routermaps";
-                                //var messenger = new Messenger();
-                                //var borlamen = context.Users.Where(q => q.OnDuty).ToList();
-                                //borlamen.ForEach(async q => await messenger.SendMessage(q.PhoneNumber, $"New Order Alert\n---------\nBin at ${dbBin.Location} is full.\n\n View Bin {url}."));
+                                var ip = System.Net.Dns.GetHostAddresses(Environment.MachineName)[1].ToString();
+                                var url = $"{ip}/4200/home/routermaps";
+                                var messenger = new Messenger();
+                                var borlamen = context.Users.Where(q => q.OnDuty).ToList();
+                                borlamen.ForEach(async q => await messenger.SendMessage(q.PhoneNumber, $"New Order Alert\n---------\nBin at ${dbBin.Location} is full.\n\n View Bin {url}."));
                             }
 
                         }
 
                         //Set pending to complete when bin goes empty
-                        var pendingOrder = context.Orders.FirstOrDefault(q => q.BinId == dbBin.Id && bin.Distance < 15 && !q.Completed);
-                        if(pendingOrder == null)
+                        var pendingOrder = context.Orders.FirstOrDefault(q => q.BinId == dbBin.Id && !q.Completed);
+                        if (pendingOrder != null && bin.Distance < 15)
                         {
                             pendingOrder.Completed = true;
                             pendingOrder.DateCompleted = DateTime.UtcNow;
@@ -91,7 +88,7 @@ namespace WebAPI.Jobs
                     context.SaveChanges();
                     await Task.Delay(1000 * 5 * 1, stoppingToken); //Delay for 1 minute
                 }
-               
+
             }
         }
     }
@@ -102,5 +99,5 @@ namespace WebAPI.Jobs
         public string Name { get; set; }
         public int Distance { get; set; }
     }
-    
+
 }

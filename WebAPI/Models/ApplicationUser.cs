@@ -37,7 +37,7 @@ namespace WebAPI.Models
         public long Id { get; set; }
         public DateTime DateRequested { get; set; }
         public DateTime? DateCompleted { get; set; }
-        public Bin Bin { get; set; }
+        public virtual Bin Bin { get; set; }
         public long BinId { get; set; }
         public bool Completed { get; set; }
     }
