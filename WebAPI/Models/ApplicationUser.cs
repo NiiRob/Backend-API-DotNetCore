@@ -30,6 +30,8 @@ namespace WebAPI.Models
         public int Distance { get; set; }
         public string Location { get; set; }
         public List<Order> Orders { get; set; }
+        public string ChannelId { get; set; }
+        public string ApiKey { get; set; }
     }
 
     public class Order

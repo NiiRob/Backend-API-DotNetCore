@@ -1,0 +1,14 @@
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\bin\Debug\netcoreapp2.2\Borlaman-api.deps.json
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\bin\Debug\netcoreapp2.2\Borlaman-api.runtimeconfig.json
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\bin\Debug\netcoreapp2.2\Borlaman-api.runtimeconfig.dev.json
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\bin\Debug\netcoreapp2.2\Borlaman-api.dll
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\bin\Debug\netcoreapp2.2\Borlaman-api.pdb
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\obj\Debug\netcoreapp2.2\Borlaman-api.csprojAssemblyReference.cache
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\obj\Debug\netcoreapp2.2\Borlaman-api.csproj.CoreCompileInputs.cache
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\obj\Debug\netcoreapp2.2\Borlaman-api.RazorAssemblyInfo.cache
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\obj\Debug\netcoreapp2.2\Borlaman-api.RazorAssemblyInfo.cs
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\obj\Debug\netcoreapp2.2\Borlaman-api.AssemblyInfoInputs.cache
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\obj\Debug\netcoreapp2.2\Borlaman-api.AssemblyInfo.cs
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\obj\Debug\netcoreapp2.2\Borlaman-api.RazorTargetAssemblyInfo.cache
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\obj\Debug\netcoreapp2.2\Borlaman-api.dll
+E:\Nikasemo\Study_Projects\WebAPI Projects\Borlaman-api\WebAPI\obj\Debug\netcoreapp2.2\Borlaman-api.pdb

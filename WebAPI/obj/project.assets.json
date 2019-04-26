@@ -13083,11 +13083,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Nikasemo\\Study_Projects\\WebAPI Projects\\WebAPI\\WebAPI\\WebAPI.csproj",
-      "projectName": "WebAPI",
-      "projectPath": "E:\\Nikasemo\\Study_Projects\\WebAPI Projects\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "projectUniqueName": "E:\\Nikasemo\\Study_Projects\\WebAPI Projects\\Borlaman-api\\WebAPI\\Borlaman-api.csproj",
+      "projectName": "Borlaman-api",
+      "projectPath": "E:\\Nikasemo\\Study_Projects\\WebAPI Projects\\Borlaman-api\\WebAPI\\Borlaman-api.csproj",
       "packagesPath": "C:\\Users\\Nii Laryea\\.nuget\\packages\\",
-      "outputPath": "E:\\Nikasemo\\Study_Projects\\WebAPI Projects\\WebAPI\\WebAPI\\obj\\",
+      "outputPath": "E:\\Nikasemo\\Study_Projects\\WebAPI Projects\\Borlaman-api\\WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
