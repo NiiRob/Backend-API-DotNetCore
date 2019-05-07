@@ -68,10 +68,13 @@ namespace WebAPI.Jobs
 
                                 //Send sms to borlamen on duty
                                 var ip = System.Net.Dns.GetHostAddresses(Environment.MachineName)[1].ToString();
-                                var url = $"{ip}/4200/home/routermaps";
+                                var url = $"https://{ip}:4200/home/just-route";
                                 var messenger = new Messenger();
-                                var borlamen = context.Users.Where(q => q.OnDuty).ToList();
-                                borlamen.ForEach(async q => await messenger.SendMessage(q.PhoneNumber, $"New Order Alert\n---------\nBin at ${bin.Location} is full.\n\n View Bin {url}."));
+                                var phoneNumbers = context.Users.Where(q => q.OnDuty && q.Type == UserType.Borlaman)
+                                    .Select(q=>q.PhoneNumber).ToList()
+                                    .Aggregate((a, b)=> $"{a},{b}");
+
+                                await messenger.SendMessage(phoneNumbers, $"New Order Alert\n---------\nBin at ${bin.Location} is full.\n\n View Bin {url}.");
                             }
 
                         }
